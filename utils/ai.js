@@ -82,26 +82,7 @@ if(!res.content ){
   }
 };
 
-const buffer=[]
-buffer.name="image.png"
-const showImage=async(area)=>{
-  try{
-   const response=openai.images.generate(
-    model="dall-e-2",
-    prompt=`일본에있는 ${area}`,
-    size="1024x1024",
-    quality="standard",
-    n=1,
-   )
-   let image_url=response.data[0].videoUrl
-   
-   console.log(image_url,'imgurp')
-   return image_url
-  }catch(error){
-    console.log(error,'img error')
-  }
-}
 
 
 
-module.exports={getFromAI,showImage}
+module.exports={getFromAI}
