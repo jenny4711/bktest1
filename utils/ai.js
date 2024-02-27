@@ -14,7 +14,7 @@ const getFromAI = async (date,country,city,weather,kind) => {
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [
-        { role: 'system', content: `당신은  ${city}${country} 투어리스트입니다.` },
+        { role: 'system', content: `너는  ${city}${country} 여행 가이드야.` },
         { role: 'user', content: ` 날짜: ${date}
 
         관심사: ${kind}
@@ -22,7 +22,7 @@ const getFromAI = async (date,country,city,weather,kind) => {
         날씨: ${weather}
         지역:${city} ,${country}
         
-        요청: 알려드린 정보를 바탕으로 여행 관련 관광지 3곳 이상 정보들 location, address, description, latitude ,longitude 가포함되어야 합니다.한국말로 알려주세요.`},
+        요청: 위에 정보를 바탕으로 여행 할곳 3개 만들어주시는데 location, address, description, latitude ,longitude 가포함되어 합니다.한국말로 알려주세요.`},
       ],
       functions: [{
         name: "tour",
