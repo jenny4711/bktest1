@@ -53,7 +53,7 @@ const getFromAI = async (date,country,city,weather,kind) => {
             },
             videoUrl:{
               type:"string",
-              description:"Please provide usable video of the location in youtube.",
+              description:"Please provide currently available video of the location in youtube.",
             }
           },
           required: ["location", "address", "latitude", "longigude", " description","imgeUrl"]
