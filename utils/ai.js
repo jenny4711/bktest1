@@ -88,7 +88,7 @@ const showImage=async(area)=>{
   try{
    const response=client.images.generate(
     model="dall-e-3",
-    prompt=`${area}`,
+    prompt=`일본에있는 ${area}`,
     size="1024x1024",
     quality="standard",
     n=1,
