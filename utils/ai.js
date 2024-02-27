@@ -11,6 +11,7 @@ const getFromAI = async (date,country,city,weather,kind) => {
  
   
   try {
+    
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [
@@ -49,9 +50,13 @@ const getFromAI = async (date,country,city,weather,kind) => {
             description: {
               type: "string",
               description: "The explain of the Location"
+            },
+            imageUrl:{
+              type:"string",
+              description:"Please provide usable image URL of the location",
             }
           },
-          required: ["location", "address", "latitude", "longigude", " description"]
+          required: ["location", "address", "latitude", "longigude", " description","imgeUrl"]
         }
       }],
       function_call:"auto"
