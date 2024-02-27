@@ -6,10 +6,11 @@ areaController.makeResult=async(req,res)=>{
     const {date,city,country,weather,kind}=req.body;
     console.log(req.body,'mainsssssssss')
     let result = await getFromAI(date,city,country,weather,kind)
-    let image= await getFromAI(city)
+   let img =await showImage(result.location)
     
-console.log(image,'result')
-    res.status(200).json({data:result})
+console.log(result.location,'result')
+console.log(img,'img!!!!!!!!')
+    res.status(200).json({data:result,img})
   }catch(error){
 console.log(error,'error!!!!!!!!!!!!')
 }
