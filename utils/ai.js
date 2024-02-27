@@ -86,8 +86,8 @@ const buffer=[]
 buffer.name="image.png"
 const showImage=async(area)=>{
   try{
-   const response=client.images.generate(
-    model="dall-e-3",
+   const response=openai.images.generate(
+    model="dall-e-2",
     prompt=`일본에있는 ${area}`,
     size="1024x1024",
     quality="standard",
