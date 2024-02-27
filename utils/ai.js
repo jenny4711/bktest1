@@ -36,7 +36,7 @@ const getFromAI = async (date,country,city,weather,kind) => {
             },
             address: {
               type: "string",
-              description: `address of the location,e.g.대한민국 서울특별시 종로구 사직로 161.please speak in ${country}`
+              description: `address of the location,e.g.대한민국 서울특별시 종로구 사직로 161.`
             },
             latitude: {
               type: "string",
