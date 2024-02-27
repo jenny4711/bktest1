@@ -22,7 +22,7 @@ const getFromAI = async (date,country,city,weather,kind) => {
         날씨: ${weather}
         지역:${city} ,${country}
         
-        요청: 알려드린 정보를 바탕으로 여행 관련 관광지 정보들 location, address, description, latitude ,longitude 가포함되어야 합니다.한국말로 알려주세요.`},
+        요청: 알려드린 정보를 바탕으로 여행 관련 관광지 3곳 정도 정보들 location, address, description, latitude ,longitude 가포함되어야 합니다.한국말로 알려주세요.`},
       ],
       functions: [{
         name: "tour",
