@@ -164,7 +164,7 @@ const openai = new OpenAI({
 // 여행 명소 정보를 요청하고 JSON 파일로 저장하는 함수
 const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
   try {
-    const { date, country, city, weather, kind } = req.query; // 클라이언트로부터 받은 쿼리 파라미터
+
 
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
