@@ -184,23 +184,31 @@ console.log(response.choices[0].message.content,'9999999')
   }
 }
 const parseResponseToObjects = (responseContent) => {
-  // 이 예시에서는 응답 형식과 일치하는 간단한 파싱 로직을 구현합니다.
-  // 실제 응답 형식에 따라 로직을 조정해야 할 수 있습니다.
-  
-  // 예시 응답 문자열: "location: 경복궁, address: 서울특별시 종로구 사직로 161, latitude: 37.579617, longitude: 126.977041, description: 대한민국의 대표적인 궁궐 중 하나입니다."
-  const regexPattern = /location: (.*?), address: (.*?), latitude: (.*?), longitude: (.*?), description: (.*?)(,|$)/g;
-  let match;
-  const destinations = [];
+  const destinationBlocks = responseContent.split("여행지 ").slice(1); // "여행지 "로 구분하여 각 여행지 정보 분리
+  const destinations = destinationBlocks.map(block => {
+    const lines = block.split("\n").filter(line => line.trim() !== "");
+    const destination = {};
 
-  while ((match = regexPattern.exec(responseContent))) {
-    destinations.push({
-      location: match[1].trim(),
-      address: match[2].trim(),
-      latitude: match[3].trim(),
-      longitude: match[4].trim(),
-      description: match[5].trim(),
+    lines.forEach(line => {
+      if (line.startsWith("장소: ")) {
+        destination.location = line.replace("장소: ", "").trim();
+      } else if (line.startsWith("주소: ")) {
+        destination.address = line.replace("주소: ", "").trim();
+      } else if (line.startsWith("설명: ")) {
+        destination.description = line.replace("설명: ", "").trim();
+      } else if (line.startsWith("위도: ")) {
+        destination.latitude = parseFloat(line.replace("위도: ", "").trim());
+      } else if (line.startsWith("경도: ")) {
+        destination.longitude = parseFloat(line.replace("경도: ", "").trim());
+      }
     });
-  }
+console.log(destination,'destination!!!!!!!!!')
+    return destination;
+  });
+  console.log(destination,'destination!5555')
+  return destinations;
+};
+
 
   return destinations;
 };
