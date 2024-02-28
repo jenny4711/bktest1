@@ -6,9 +6,9 @@ areaController.makeResult=async(req,res)=>{
     const {date,city,country,weather,kind}=req.body;
     console.log(req.body,'mainsssssssss')
     let result = await getFromAI(date,city,country,weather,kind)
-
+console.log(result,'result!!!!!!!!!!!dddd')
     
-console.log(result.location,'result')
+
 
     res.status(200).json({data:result})
   }catch(error){
