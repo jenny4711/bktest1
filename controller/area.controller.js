@@ -6,7 +6,7 @@ areaController.makeResult=async(req,res)=>{
     const {date,city,country,weather,kind}=req.body;
     console.log(req.body,'mainsssssssss')
     // let result = await getFromAI(date,city,country,weather,kind)
-    let result =await getFromAIAndSaveAsJSON('2024-02-27', 'South Korea', 'Seoul', 'Sunny', 'Culture');
+    let result =await getFromAIAndSaveAsJSON(date,city,country,weather,kind);
 console.log(result,'result!!!!!!!!!!!dddd')
     
 

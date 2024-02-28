@@ -164,6 +164,8 @@ const openai = new OpenAI({
 // 여행 명소 정보를 요청하고 JSON 파일로 저장하는 함수
 const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
   try {
+    const { date, country, city, weather, kind } = req.query; // 클라이언트로부터 받은 쿼리 파라미터
+
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [
@@ -172,32 +174,18 @@ const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
       ]
     });
 
-    console.log('API로부터 받은 응답:', response.choices[0].message.content);
+    // API 응답을 객체 배열로 변환 (여기서는 응답 형식에 따라 파싱 로직을 조정해야 할 수 있음)
+    const destinations = parseResponseToObjects(response.choices[0].message.content);
 
-    // 받은 응답을 JSON 파일로 저장
-    saveResponseAsJSON(response.choices[0].message.content);
+    return destinations
   } catch (error) {
     console.error('Error creating chat completion:', error);
+    res.status(500).send('Internal Server Error');
   }
-};
+}
+ 
 
-// 응답을 JSON 파일로 저장하는 함수
-const saveResponseAsJSON = (data) => {
-  // 파일 경로와 이름 설정
-  const filePath = './destinationData.json';
 
-  // JSON 형태로 데이터 변환
-  const jsonData = JSON.stringify(data, null, 2);
-
-  // 파일 시스템을 사용하여 파일 저장
-  fs.writeFile(filePath, jsonData, 'utf8', (err) => {
-    if (err) {
-      console.error('파일 저장 중 오류 발생:', err);
-    } else {
-      console.log('데이터가 JSON 파일로 성공적으로 저장되었습니다:', filePath);
-    }
-  });
-};
 
 // 함수 실행
 
