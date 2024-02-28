@@ -1,4 +1,4 @@
-export const createObj = (infoArray) => {
+ const createObj = (infoArray) => {
   const destinations = [];
   let currentDestination = {};
 
@@ -31,3 +31,6 @@ export const createObj = (infoArray) => {
 console.log(destinations,'des')
   return destinations;
 };
+
+
+module.exports = {createObj}
