@@ -180,7 +180,7 @@ const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
     return destinations
   } catch (error) {
     console.error('Error creating chat completion:', error);
-    res.status(500).send('Internal Server Error');
+   
   }
 }
  
