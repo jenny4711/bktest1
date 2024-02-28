@@ -1,5 +1,6 @@
-// const {getFromAI} =require('../utils/ai')
+
 const areaController={}
+const {createObj}=require('../utils/createObj')
 const {getFromAIAndSaveAsJSON} = require('../utils/ai')
 areaController.makeResult=async(req,res)=>{
   try{
@@ -7,11 +8,13 @@ areaController.makeResult=async(req,res)=>{
     console.log(req.body,'mainsssssssss')
     // let result = await getFromAI(date,city,country,weather,kind)
     let result =await getFromAIAndSaveAsJSON(date,city,country,weather,kind);
-console.log(result,'result!!!!!!!!!!!dddd')
+    const tipsArray = result.split('\n').map(tip => tip.trim()).filter(tip => tip.length > 0);
+    const resultObj=createObj(tipsArray)
+console.log(resultObj,'result!!!!!!!!!!!dddd')
     
 
 
-    res.status(200).json({data:result})
+    res.status(200).json({data:resultObj})
   }catch(error){
 console.log(error,'error!!!!!!!!!!!!')
 }
