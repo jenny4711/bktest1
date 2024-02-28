@@ -198,7 +198,7 @@ const getRestaurantFromAI = async (date, country, city, weather, kind) => {
       model: 'gpt-3.5-turbo',
       messages: [
         { role: 'system', content: `You are a guide who knows the best restaurants in ${city}, ${country}.` },
-        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest: Based on the above information, please provide 5 good restaurant with location, address, description, latitude, and longitude included. Please provide the information in Korean.` },
+        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest: Based on the above information, please provide 5 good restaurant with restaurantName, location, address, description, latitude, and longitude included. Please provide the information in Korean.` },
       ]
     });
 
