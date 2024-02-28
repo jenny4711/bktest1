@@ -188,8 +188,32 @@ const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
 
 
 
-// 함수 실행
+//----------------------------------------------------
+
+const getRestaurantFromAI = async (date, country, city, weather, kind) => {
+  try {
+
+
+    const response = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages: [
+        { role: 'system', content: `You are a guide who knows the best restaurants in ${city}, ${country}.` },
+        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest: Based on the above information, please provide 5 good restaurant with location, address, description, latitude, and longitude included. Please provide the information in Korean.` },
+      ]
+    });
+
+   
+
+    return response.choices[0].message.content
+  } catch (error) {
+    console.error('Error creating chat completion:', error);
+   
+  }
+}
 
 
 
- module.exports = { getFromAIAndSaveAsJSON  };
+
+
+
+ module.exports = { getFromAIAndSaveAsJSON ,getRestaurantFromAI };
