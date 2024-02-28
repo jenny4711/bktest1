@@ -18,7 +18,7 @@ const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
       model: 'gpt-3.5-turbo',
       messages: [
         { role: 'system', content: `You are a travel guide for ${city}, ${country}.` },
-        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest: Based on the above information, please provide 4 travel destinations with name of travel destination, address, description, latitude, and longitude included. Please provide the information in Korean.` },
+        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest: Based on the above information, please provide 4 travel destinations with name of travel destination, address, description, latitude, and longitude included.` },
       ]
     });
 
@@ -47,7 +47,7 @@ const getRestaurantFromAI = async (date, country, city, weather, kind) => {
       model: 'gpt-3.5-turbo',
       messages: [
         { role: 'system', content: `You are a guide who knows the best restaurants in ${city}, ${country}.` },
-        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest: Request: Without order numbers, please provide information on 5 good restaurants including the restaurant's name, location, address, description, latitude, and longitude in Korean.` },
+        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest: Request: Without order numbers, please provide information on 5 good restaurants including the restaurant's name, location, address, description, latitude, and longitude. ` },
       ]
     });
 
