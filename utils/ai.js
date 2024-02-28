@@ -24,7 +24,7 @@ const getFromAI = async (date,country,city,weather,kind) => {
           Location: ${city}, ${country}
           Request: Based on the above information, please provide 4 travel destinations with location, address, description, latitude, and longitude included. Please provide the information in Korean.`
         },
-      ]
+      ],
       functions: [{
         name: "tour",
         description: "get infomation of location.please speak in Korean.",
