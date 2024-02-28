@@ -183,6 +183,7 @@ console.log(response.choices[0].message.content,'9999999')
    
   }
 }
+
 const parseResponseToObjects = (responseContent) => {
   const destinationBlocks = responseContent.split("여행지 ").slice(1); // "여행지 "로 구분하여 각 여행지 정보 분리
   const destinations = destinationBlocks.map(block => {
@@ -202,16 +203,13 @@ const parseResponseToObjects = (responseContent) => {
         destination.longitude = parseFloat(line.replace("경도: ", "").trim());
       }
     });
-console.log(destination,'destination!!!!!!!!!')
+console.log(destination,'destination')
     return destination;
   });
-  console.log(destination,'destination!5555')
+console.log(destinations,'destionations!!!')
   return destinations;
 };
 
-
-  return destinations;
-};
 
 
 
