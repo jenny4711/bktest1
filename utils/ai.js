@@ -183,7 +183,27 @@ const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
    
   }
 }
- 
+const parseResponseToObjects = (responseContent) => {
+  // 이 예시에서는 응답 형식과 일치하는 간단한 파싱 로직을 구현합니다.
+  // 실제 응답 형식에 따라 로직을 조정해야 할 수 있습니다.
+  
+  // 예시 응답 문자열: "location: 경복궁, address: 서울특별시 종로구 사직로 161, latitude: 37.579617, longitude: 126.977041, description: 대한민국의 대표적인 궁궐 중 하나입니다."
+  const regexPattern = /location: (.*?), address: (.*?), latitude: (.*?), longitude: (.*?), description: (.*?)(,|$)/g;
+  let match;
+  const destinations = [];
+
+  while ((match = regexPattern.exec(responseContent))) {
+    destinations.push({
+      location: match[1].trim(),
+      address: match[2].trim(),
+      latitude: match[3].trim(),
+      longitude: match[4].trim(),
+      description: match[5].trim(),
+    });
+  }
+
+  return destinations;
+};
 
 
 
