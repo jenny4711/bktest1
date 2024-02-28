@@ -173,42 +173,17 @@ const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
         { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest: Based on the above information, please provide 4 travel destinations with location, address, description, latitude, and longitude included. Please provide the information in Korean.` },
       ]
     });
-console.log(response.choices[0].message.content,'9999999')
-    // API 응답을 객체 배열로 변환 (여기서는 응답 형식에 따라 파싱 로직을 조정해야 할 수 있음)
-    const destinations = parseResponseToObjects(response.choices[0].message.content);
 
-    return destinations
+   
+
+    return response.choices[0].message.content
   } catch (error) {
     console.error('Error creating chat completion:', error);
    
   }
 }
 
-const parseResponseToObjects = (responseContent) => {
-  const destinationBlocks = responseContent.split("여행지 ").slice(1); // "여행지 "로 구분하여 각 여행지 정보 분리
-  const destinations = destinationBlocks.map(block => {
-    const lines = block.split("\n").filter(line => line.trim() !== "");
-    const destination = {};
 
-    lines.forEach(line => {
-      if (line.startsWith("장소: ")) {
-        destination.location = line.replace("장소: ", "").trim();
-      } else if (line.startsWith("주소: ")) {
-        destination.address = line.replace("주소: ", "").trim();
-      } else if (line.startsWith("설명: ")) {
-        destination.description = line.replace("설명: ", "").trim();
-      } else if (line.startsWith("위도: ")) {
-        destination.latitude = parseFloat(line.replace("위도: ", "").trim());
-      } else if (line.startsWith("경도: ")) {
-        destination.longitude = parseFloat(line.replace("경도: ", "").trim());
-      }
-    });
-console.log(destination,'destination')
-    return destination;
-  });
-console.log(destinations,'destionations!!!')
-  return destinations;
-};
 
 
 
