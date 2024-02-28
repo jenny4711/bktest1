@@ -12,13 +12,19 @@ const openai = new OpenAI({
 
 const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
   try {
-
+    const form={
+      name:"여행명소 의 이름",
+      address:"여행명소 의 주소",
+      description:"여행명소 의 설명",
+      latitude:"위도",
+      longitude:"경도"
+     }
 
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [
         { role: 'system', content: `You are a travel guide for ${city}, ${country}.` },
-        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest: Based on the above information, please provide 4 travel destinations with name of travel destination, address, description, latitude, and longitude included. Please provide the information in Korean.DO NOT SHOW 1.,2.,3.,4.,5 in front of name please.` },
+        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest:알려드린 정보를 바탕으로 , 추천 여행 명소 5곳의 정보를 ${form} 같이 한국어로 알려주세요.` },
       ]
     });
 
@@ -40,13 +46,19 @@ const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
 
 const getRestaurantFromAI = async (date, country, city, weather, kind) => {
   try {
-
+   const form={
+    name:"레스토랑 의 이름",
+    address:"레스토랑 의 주소",
+    description:"레스토랑 의 설명",
+    latitude:"위도",
+    longitude:"경도"
+   }
 
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [
         { role: 'system', content: `You are a guide who knows the best restaurants in ${city}, ${country}.` },
-        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest:차례 번호 없이, 레스토랑의 이름, 위치, 주소, 설명, 위도, 경도 를 포함하여 좋은 레스토랑 5곳의 정보를 한국어로 알려주세요.1.,2.,3.,4.,5 제발 빼고 주세요.` },
+        { role: 'user', content: `Date: ${date}\nInterests: ${kind}\nWeather: ${weather}\nLocation: ${city}, ${country}\nRequest:차례 번호 없이, ${form} 같이 좋은 레스토랑 5곳의 정보를 한국어로 알려주세요.` },
       ]
     });
 
