@@ -175,8 +175,8 @@ const getFromAIAndSaveAsJSON = async (date, country, city, weather, kind) => {
     });
 
     // API 응답을 객체 배열로 변환 (여기서는 응답 형식에 따라 파싱 로직을 조정해야 할 수 있음)
-    const destinations = parseResponseToObjects(response.choices[0].message.content);
-
+    const destinations = JSON.parse(response.choices[0].message.content);
+   
     return destinations
   } catch (error) {
     console.error('Error creating chat completion:', error);
